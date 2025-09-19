@@ -20,7 +20,8 @@ public class TestIterator {
 
   @Before
   public void setUp() throws Exception {
-    list = new ArrayList<Integer>();
+    list = new ArrayList<Integer>(); //
+    list = new LinkedList<>();
     // TODO Question: Also try with a LinkedList - does it make any difference?
   }
 
