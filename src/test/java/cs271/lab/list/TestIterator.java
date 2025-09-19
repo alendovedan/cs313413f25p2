@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -48,17 +49,17 @@ public class TestIterator {
     assertEquals(33, i.next().intValue());
     // TODO fix the expected values in the assertions below
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(44, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(55, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(66, i.next().intValue());
     assertFalse(i.hasNext());
   }
 
@@ -80,7 +81,8 @@ public class TestIterator {
     // TODO using assertEquals and List.of, express which values are left in the list
     // See TestList.java for examples of how to use List.of; also see the Java List
     // interface for more information
-    fail("Not yet implemented"); // remove this line when done
+      // Express which values are left in the list
+      assertEquals(List.of(33, 44, 55, 66), list); // Only the 77s were removed
   }
 
   @Test
@@ -97,6 +99,12 @@ public class TestIterator {
     // TODO use an iterator and a while loop to compute the average (mean) of the values
     // (defined as the sum of the items divided by the number of items)
     // testNonempty shows how to use an iterator; use i.hasNext() in the while loop condition
+      // Use an iterator to compute sum and count
+      final Iterator<Integer> i = list.iterator();
+      while (i.hasNext()) {
+          sum += i.next();
+          n++;
+      }
     assertEquals(61.3, sum / n, 0.1);
     assertEquals(7, n);
   }
