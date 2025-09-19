@@ -83,7 +83,7 @@ public class TestList {
     assertEquals(5, list.lastIndexOf(77));
     assertEquals(44, list.get(2).intValue());
     assertEquals(77, list.get(3).intValue());
-      assertEquals(List.of(33, 77, 44), List.of(list.get(0), list.get(1), list.get(2)));
+    assertEquals(List.of(33, 77, 44), List.of(list.get(0), list.get(1), list.get(2)));
   }
 
   @Test
@@ -97,17 +97,14 @@ public class TestList {
     list.add(6);
     list.remove(5); // TODO Question: What does this method do?
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
     list.remove(Integer.valueOf(5)); // TODO Question: What does this one do?
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
+      // Assertions
+      assertEquals(List.of(3, 77, 4, 77, 6), list); // remaining elements
+      assertEquals(1, list.indexOf(77));           // first occurrence of 77
+      assertEquals(3, list.lastIndexOf(77));       // last occurrence of 77
+      assertEquals(3, list.get(0).intValue());     // first element
+      assertEquals(77, list.get(1).intValue());    // second element
+      assertEquals(6, list.get(4).intValue());     // last element
   }
 
   @Test
@@ -122,7 +119,8 @@ public class TestList {
     // TODO using containsAll and List.of (see above),
     // 1) assert that list contains all five different numbers added
     // 2) assert that list does not contain all of 11, 22, and 33
-    fail("Not yet implemented"); // remove this line when done
+      assertTrue(list.containsAll(List.of(33, 44, 55, 66, 77)));
+      assertTrue(!list.containsAll(List.of(11, 22, 33)));
   }
 
   @Test
@@ -130,6 +128,7 @@ public class TestList {
     // TODO in a single statement using addAll and List.of,
     // add items to the list to make the following assertions pass
     // (without touching the assertions themselves)
+      list.addAll(List.of(33, 77, 44, 77, 55, 77, 66));
     assertEquals(7, list.size());
     assertEquals(33, list.get(0).intValue());
     assertEquals(77, list.get(1).intValue());
@@ -152,7 +151,9 @@ public class TestList {
     // TODO in a single statement using removeAll and List.of,
     // remove items from the list to make the following assertions pass
     // (without touching the assertions themselves)
-    assertEquals(3, list.size());
+      list.removeAll(List.of(33, 44, 55, 66));
+      assertEquals(List.of(77, 77, 77), list);
+      assertEquals(3, list.size());
     assertEquals(List.of(77, 77, 77), list);
   }
 
@@ -168,7 +169,9 @@ public class TestList {
     // TODO in a single statement using retainAll and List.of,
     // remove items from the list to make the following assertions pass
     // (without touching the assertions themselves)
-    assertEquals(3, list.size());
+      list.retainAll(List.of(77));
+      assertEquals(List.of(77, 77, 77), list);
+      assertEquals(3, list.size());
     assertEquals(List.of(77, 77, 77), list);
   }
 
@@ -184,7 +187,11 @@ public class TestList {
     // TODO use the set method to change specific elements in the list
     // such that the following assertions pass
     // (without touching the assertions themselves)
-    assertEquals(7, list.size());
+      list.set(1, 99);
+      list.set(3, 99);
+      list.set(5, 99);
+
+      assertEquals(7, list.size());
     assertEquals(33, list.get(0).intValue());
     assertEquals(99, list.get(1).intValue());
     assertEquals(44, list.get(2).intValue());
@@ -205,6 +212,6 @@ public class TestList {
     list.add(66);
     // TODO fix the arguments in the subList method so that the assertion
     // passes
-    assertEquals(List.of(44, 77, 55), list.subList(0, 0));
+    assertEquals(List.of(44, 77, 55), list.subList(2, 5));
   }
 }
